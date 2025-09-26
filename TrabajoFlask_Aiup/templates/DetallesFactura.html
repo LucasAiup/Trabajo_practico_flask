@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Listado de facturas</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link href='../static/Estilo.css' rel="stylesheet">
+    </head>
+    <body>
+        <nav class="container">
+            <ul class="row" id="center_y">
+                <div id="dashboard">
+                    <div class="col d-flex justify-content-center" id="banner">
+                        <h1>Listado de facturas</h1>
+                    </div>
+                    <div class="col d-flex justify-content-center" id="spaced">
+                        <div id="spaced">
+                            <a href="{{url_for('CrudClientes')}}">Gestionar Clientes</a>
+                        </div>
+                        <div id="spaced">
+                            <a href="{{url_for('CrudProductos')}}">Gestionar Productos</a>
+                        </div>
+                        <div id="spaced">
+                            <a href="{{url_for('EmitirFactura')}}">Emitir Factura</a>
+                        </div>
+                        <div id="spaced">
+                            <div id="selected">Listado de facturas</div>
+                        </div>
+                    </div>
+                    <div id="spaced_left">
+                        <table id="box">
+                            <tr>
+                                <th>Id_detalle</th>
+                                <th>Id_factura</th>
+                                <th>Id_producto</th>
+                                <th>cantidad</th>
+                                <th>precio_unitario</th>
+                                <th>subtotal</th>
+                            </tr>
+                            {% for row in data %}
+                            <tr>
+                                <td id="spaced">{{row.id_detalle}}</td>
+                                <td id="spaced">{{row.id_factura}}</td>
+                                <td id="spaced">{{row.id_producto}}</td>
+                                <td id="spaced">{{row.cantidad}}</td>
+                                <td id="spaced">{{row.precio_unitario}}</td>
+                                <td id="spaced">{{row.subtotal}}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </ul>
+        </nav>
+    </body>
+</html>

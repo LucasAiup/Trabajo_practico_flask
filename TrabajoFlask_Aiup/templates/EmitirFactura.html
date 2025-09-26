@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Emitir facturas</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link href='../static/Estilo.css' rel="stylesheet">
+    </head>
+    <body>
+        <nav class="container">
+            <ul class="row" id="center_y">
+                <div id="dashboard">
+                    <div class="col d-flex justify-content-center" id="banner">
+                        <h1>Emitir facturas</h1>
+                    </div>
+                    <div class="col d-flex justify-content-center" id="spaced">
+                         <div id="spaced">
+                            <a href="{{url_for('CrudClientes')}}">Gestionar Clientes</a>
+                        </div>
+                        <div id="spaced">
+                            <a href="{{url_for('CrudProductos')}}">Gestionar Productos</a>
+                        </div>
+                        <div id="spaced">
+                            <div id="selected">Emitir Factura</div>
+                        </div>
+                        <div id="spaced">
+                            <a href="{{url_for('ListarFacturas')}}">Listado de facturas</a>
+                        </div>
+                    </div>
+                    <div class="col d-flex justify-content-center" id="spaced">
+                        <form method="POST">
+                            <select name="id_cliente" required>
+                                {% for Cliente in Clientes %}
+                                    <option value="{{ Cliente.id_cliente }}">{{ Cliente.nombre }}</option>
+                                {% endfor %}
+                            </select>
+                            <select name="id_producto" required>
+                                {% for producto in productos %}
+                                    <option value="{{ producto.id_producto }}">{{ producto.descripcion }}</option>
+                                {% endfor %}
+                            </select>
+                            <input type="number" name="cantidad" required>
+                            <button type="submit">Emitir Factura</button>
+                        </form>
+                    </div>
+                </div>
+            </ul>
+        </nav>
+    </body>
+</html>

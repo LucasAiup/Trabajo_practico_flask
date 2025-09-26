@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Gestion de Productos</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link href='../static/Estilo.css' rel="stylesheet">
+    </head>
+    <body>
+        <nav class="container">
+            <ul class="row" id="center_y">
+                <div id="dashboard">
+                    <div class="col d-flex justify-content-center" id="banner">
+                        <h1>Gestion de Productos</h1>
+                    </div>
+                    <div class="col d-flex justify-content-center" id="spaced">
+                        <div id="spaced">
+                            <a href="{{url_for('CrudClientes')}}">Gestionar Clientes</a>
+                        </div>
+                        <div id="spaced">
+                            <div id="selected">Gestionar Productos</div>
+                        </div>
+                        <div id="spaced">
+                            <a href="{{url_for('EmitirFactura')}}">Emitir Factura</a>
+                        </div>
+                        <div id="spaced">
+                            <a href="{{url_for('ListarFacturas')}}">Listado de facturas</a>
+                        </div>
+                    </div>
+                    <div class="col d-flex justify-content-center" id="spaced">
+                        <form method="post">
+                            <div class="col justify-content-center" id="spaced_top">
+                                <input type="text" name="descripcion" placeholder="Descripcion" required>
+                                <input type="number" name="precio" placeholder="Precio" required>
+                                <input type="number" name="stock" placeholder="Stock" required>
+                                <input type="number" name="query_type" value="1" hidden>
+                                <button type="submit">Insertar</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col d-flex justify-content-center" id="spaced">
+                        <table id="box">
+                            <tr>
+                                <th>id_producto</th>
+                                <th>Descripcion</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                                <th>Acciones</th>
+                            </tr>
+                            {% for row in data %}
+                            <tr>
+                                <td id="spaced">{{row.id_producto}}</td>
+                                <td id="spaced">{{row.descripcion}}</td>
+                                <td id="spaced">{{row.precio}}</td>
+                                <td id="spaced">{{row.stock}}</td>
+                                <td>
+                                    <form action="{{url_for('EditProducto')}}" method="post">
+                                        <input type="number" name="id_producto" value={{row.id_producto}} hidden>
+                                        <button type="submit" name="insert">Editar</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form method="post">
+                                        <input type="number" name="id_producto" value={{row.id_producto}} hidden>
+                                        <input type="number" name="query_type" value="3" hidden>
+                                        <button type="submit" name="insert">Borrar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </ul>
+        </nav>
+    </body>
+</html>

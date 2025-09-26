@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Gestion de Clientes</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link href='../static/Estilo.css' rel="stylesheet">
+    </head>
+    <body>
+        <nav class="container">
+            <ul class="row" id="center_y">
+                <div id="dashboard">
+                    <div class="col d-flex justify-content-center" id="banner">
+                        <h1>Gestion de Clientes</h1>
+                    </div>
+                    <div class="col d-flex justify-content-center" id="spaced">
+                        <div id="spaced">
+                            <div id="selected">Gestionar Clientes</div>
+                        </div>
+                        <div id="spaced">
+                            <a href="{{url_for('CrudProductos')}}">Gestionar Productos</a>
+                        </div>
+                        <div id="spaced">
+                            <a href="{{url_for('EmitirFactura')}}">Emitir Factura</a>
+                        </div>
+                        <div id="spaced">
+                            <a href="{{url_for('ListarFacturas')}}">Listado de facturas</a>
+                        </div>
+                    </div>
+                    <div class="col d-flex justify-content-center" id="spaced">
+                        <form method="post">
+                            <div class="col justify-content-center" id="spaced_top">
+                                <input type="text" name="Nombre" placeholder="Nombre" required>
+                                <input type="text" name="direccion" placeholder="Direccion" required>
+                                <input type="tel" name="telefono" placeholder="Telefono 000-000-0000" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
+                                <input type="email" name="email" placeholder="email" required>
+                                <input type="number" name="query_type" value="1" hidden>
+                                <button type="submit" name="insert">Insertar</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="spaced_left">
+                        <table id="box">
+                            <tr>
+                                <th>Id_clientes</th>
+                                <th>Nombre</th>
+                                <th>Direccion</th>
+                                <th>Telefono</th>
+                                <th>mail</th>
+                                <th>Acciones</th>
+                            </tr>
+                            {% for row in data %}
+                            <tr>
+                                <td id="spaced">{{row.id_cliente}}</td>
+                                <td id="spaced">{{row.nombre}}</td>
+                                <td id="spaced">{{row.direccion}}</td>
+                                <td id="spaced">{{row.telefono}}</td>
+                                <td id="spaced">{{row.email}}</td>
+                                <td>
+                                    <form action="{{url_for('EditClientes')}}" method="post">
+                                        <input type="number" name="id_cliente" value={{row.id_cliente}} hidden>
+                                        <button type="submit" name="insert">Editar</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form method="post">
+                                        <input type="number" name="id_cliente" value={{row.id_cliente}} hidden>
+                                        <input type="number" name="query_type" value="3" hidden>
+                                        <button type="submit" name="insert">Borrar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </ul>
+        </nav>
+    </body>
+</html>
